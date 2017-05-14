@@ -1,6 +1,5 @@
 # Architetture dei Sistemi Software
-ASW project assignments
-Projects:
+ASW project assignments:
 1) asw-progetto-LRT: Simple distributed application using REST services and a virtual environment
 
 Students:
