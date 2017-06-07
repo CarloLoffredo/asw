@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PathVariable; 
 import org.springframework.web.bind.annotation.RequestParam; 
 import org.springframework.web.client.RestTemplate;
+import org.springframework.beans.factory.annotation.Value;
 
 import javax.annotation.PostConstruct;
 
@@ -14,13 +15,17 @@ import javax.annotation.PostConstruct;
 public class SController {
 	
 	private RestTemplate restTemplate = new RestTemplate();
-   
+   	
+	@Value("${word.s1.uri}")
+	private String s1URI;
+	@Value("${word.s2.uri}")
+	private String s2URI;
 	
 	/* Restituisce info generiche sull'{artista} specificato */
 	@RequestMapping("/S/{artista}")
 	public String artistaS(@PathVariable String artista) {
-		String info = restTemplate.getForObject("http://localhost:8081/S1/{artista}", String.class, artista);
-		String infoAlbum = restTemplate.getForObject("http://localhost:8082/S2/{artista}", String.class, artista);
+		String info = restTemplate.getForObject(s1URI + artista, String.class);
+		String infoAlbum = restTemplate.getForObject(s2URI + artista, String.class);
 
 		if(!(info.equals("fail")))
 			return "I " + artista + " hanno " + info + " e hanno " + infoAlbum ;
@@ -29,8 +34,8 @@ public class SController {
 	
 	@RequestMapping("/S/{artista}/{album}")
 	public String artistaSalbum(@PathVariable String artista, @PathVariable String album) {
-		String info = restTemplate.getForObject("http://localhost:8081/S1/{artista}", String.class, artista);
-		String infoAlbum = restTemplate.getForObject("http://localhost:8082/S2/{artista}/{album}", String.class, artista, album);
+		String info = restTemplate.getForObject(s1URI + artista, String.class);
+		String infoAlbum = restTemplate.getForObject(s2URI + artista + "/" + album, String.class);
 
 		if(info.equals("fail"))
 			return "I " + artista + " non sono presenti nel database";

@@ -1,0 +1,10 @@
+# application.yml 
+--- 
+spring: 
+  application: 
+    name: s-service
+word: 
+  s1.uri: http://localhost:8081/S1/
+  s2.uri: http://localhost:8082/S2/
+server:
+  port: 8080
