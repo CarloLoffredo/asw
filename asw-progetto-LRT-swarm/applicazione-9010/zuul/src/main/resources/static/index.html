@@ -1,0 +1,27 @@
+<html>
+<head>
+  <title>Applicazione 9010</title>
+</head>
+
+<body>
+  <h1>Applicazione 9010</h1>
+
+<script type="text/javascript">
+function search_navigate() {
+    var campoArtista = document.getElementById("campoArtista");
+    var campoAlbum = document.getElementById("campoAlbum");
+    var artista = campoArtista.value;
+    var album = "/"+campoAlbum.value;
+    var dst = "/S/" + artista + album;
+    window.location = dst;
+}
+</script>
+
+<span id="navbar_form">
+    <input type="search" placeholder="Cerca Artisti..." id="campoArtista" />
+    <input type="search" placeholder="Cerca Album" id="campoAlbum" />
+    <input type="button" id="navbar_submit" value="Cerca" onClick="search_navigate()" />
+</span>
+
+</body>
+</html>
